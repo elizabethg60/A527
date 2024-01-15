@@ -1,1 +1,1 @@
-from .JWST import all 
+from .JWST import potential, acceleration, potential_grid, acceleration_grid
