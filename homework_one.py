@@ -38,31 +38,57 @@ d = 1
 m = m1 + m2
 x1 = -(m2/m)*d
 x2 = (m1/m)*d
-orbit1 = np.linspace(-x1, x1, 50)
-orbit2 = np.linspace(-x2, x2, 50)
+orbit1x = np.linspace(-x1, x1, 50)
+orbit2x = np.linspace(-x2, x2, 50)
+
+def y_circle_pos(x, radius):
+    return np.sqrt(radius**2 - x**2)
+
+def y_circle_neg(x, radius):
+    return -np.sqrt(radius**2 - x**2)
+
+orbit1y_pos = y_circle_pos(orbit1x, np.abs(x1))
+orbit2y_pos = y_circle_pos(orbit2x, np.abs(x2))
+orbit1y_neg = y_circle_neg(orbit1x, np.abs(x1))
+orbit2y_neg = y_circle_neg(orbit2x, np.abs(x2))
+
+orbit1y = list(orbit1y_pos) + list(orbit1y_neg)
+orbit2y = list(orbit2y_pos) + list(orbit2y_neg)
+orbit1x = list(orbit1x) + list(orbit1x)
+orbit2x = list(orbit2x) + list(orbit2x)
+
+# print(potential(m1, m2, d))
+# print(acceleration(m1, m2, d))
+
+#potential_array = []
+acceleration_array = []
+import math
+for i in range(0, len(orbit1x)):
+    #potential_array.append(potential_grid(m1, m2, d, orbit1x[i], orbit1y[i], orbit2x[i], orbit2y[i]))
+    acceleration_array.append(acceleration_grid(m1, m2, d, orbit1x[i], orbit1y[i], orbit2x[i], orbit2y[i]))
+    print(math.dist([orbit1x[i], orbit1y[i]], [orbit2x[i], orbit2y[i]])) 
+
+# print(acceleration_array)
 
 #plot object one 
-X1, Y1 = np.meshgrid(orbit1, orbit1)
-Z1 = potential_grid(m1, m2, d, X1, Y1)
-levels1 = np.linspace(np.min(Z1), np.max(Z1), 7)
-#plot object one 
-X2, Y2 = np.meshgrid(orbit2, orbit2)
-Z2 = potential_grid(m1, m2, d, X2, Y2)
-levels2 = np.linspace(np.min(Z2), np.max(Z2), 7)
+X1, Y1 = np.meshgrid(orbit1x, orbit1y)
+X2, Y2 = np.meshgrid(orbit2x, orbit2y)
+Z = potential_grid(m1, m2, d, X1, Y1, X2, Y2)
+levels = np.linspace(np.min(Z), np.max(Z), 7)
 
 #plot
 fig, ax = plt.subplots()
-ax.contour(X1, Y1, Z1, levels=levels1)
-ax.contour(X2, Y2, Z2, levels=levels2)
+ax.scatter(orbit1x, orbit1y, color = 'r')
+ax.scatter(orbit2x, orbit2y, color = 'r')
+ax.contour(X1, Y1, Z, levels=levels)
+ax.contour(X2, Y2, Z, levels=levels)
 
-acc_vector = acceleration_grid(m1, m2, d, orbit1, orbit2)
-ax.quiver(orbit1, orbit1, acc_vector[0], acc_vector[1], color="C0", angles='xy', scale_units='xy', scale=4, width=.005)
-ax.quiver(orbit2, orbit2, acc_vector[0], acc_vector[1], color="C0", angles='xy', scale_units='xy', scale=4, width=.005)
+ax.quiver(orbit1x, orbit1y, list(list(zip(*acceleration_array)))[0], list(list(zip(*acceleration_array)))[1], color="C0", angles='xy', scale_units='xy', scale=4, width=.005)
+ax.quiver(orbit2x, orbit2y, list(list(zip(*acceleration_array)))[0], list(list(zip(*acceleration_array)))[1], color="C0", angles='xy', scale_units='xy', scale=4, width=.005)
 plt.show()
 
-#Tuesday: debug 1 + 2
-#confirm with cindy on how to input grid location 
-#cant use linspace (it is a line), need to input a CIRCULAR orbit 
+#Wednesday: debug 1 + 2
+#confirm with cindy: geometry, how to input grid location, distance not always 1 along circle
 #confirm debuging complete for 1 + 2 then do case #2
 
 """
