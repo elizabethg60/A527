@@ -36,19 +36,3 @@ def bisection_error(a,b,tol):
 
 print("The root is: {}".format(bisection_iterative(f, 0, 5, 0.01))) #step one: choose brackets
 print("The root is: {}".format(bisection_error(0, 5, 0.0001))) 
-
-# def bisection(f, m1, m2, d, a, b, tol):
-#     c = (a+b)/2.0
-#     y = 0
-#     while (b-a)/2.0 > tol:
-#         if sum(list(f(m1, m2, d, c, y))) == 0:
-#             return c
-#         elif sum(list(f(m1, m2, d, a, y)))*sum(list(f(m1, m2, d, c, y))) < 0:
-#             b = c
-#         else :
-#             a = c
-#             eps = np.abs(c - (a+b)/2.0)
-#             c = (a+b)/2.0
-#             if eps < tol:
-#                 break
-#     return c

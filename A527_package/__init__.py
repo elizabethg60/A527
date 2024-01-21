@@ -1,1 +1,1 @@
-from .JWST import potential, acceleration, bisection, bisection_2
+from .JWST import potential, acceleration, bisection_xaxis, bisection_yaxis

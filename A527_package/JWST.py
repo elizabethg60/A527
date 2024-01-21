@@ -26,36 +26,22 @@ def acceleration(m1, m2, d, x, y):
 
     return (-m1/((np.linalg.norm(list(r_vector-r1_vector)))**3))*(r_vector-r1_vector) - (m2/((np.linalg.norm(list(r_vector-r2_vector)))**3))*(r_vector-r2_vector) + omega_squared*r_vector
 
-def bisection(f, m1, m2, d, a, b, tol):
+def bisection_xaxis(f, m1, m2, d, a, b, tol):
+#search along the x axis for the L1, L2, and L3 points
     c = (a+b)/2.0
     y = 0
-
-    # print(sum(list(f(m1, m2, d, a, y))))
-    # print(sum(list(f(m1, m2, d, c, y))))
     while (b-a)/2.0 > tol:
         if sum(list(f(m1, m2, d, c, y))) == 0:
-            # print("equal")
             return c
         elif sum(list(f(m1, m2, d, a, y)))*sum(list(f(m1, m2, d, c, y))) < 0:
-            # print("lower")
             b = c
         else :
-            # print("higher")
             a = c
         c = (a+b)/2.0
     return c
 
-# def bisection(f, m1, m2, d, a, b, tol):
-#     m = (a + b)/2 
-#     y = 0
-#     if sum(list(f(m1, m2, d, m, y))) < tol:
-#         return m
-#     elif np.sign(sum(list(f(m1, m2, d, a, y)))) == np.sign(sum(list(f(m1, m2, d, m, y)))):
-#         return bisection(f,m1, m2, d,m, b, tol)
-#     elif np.sign(sum(list(f(m1, m2, d, b, y)))) == np.sign(sum(list(f(m1, m2, d, m, y)))):
-#         return bisection(f,m1, m2, d, a, m, tol)
-
-def bisection_2(f, m1, m2, d, a, b, tol, x):
+def bisection_yaxis(f, m1, m2, d, a, b, tol, x):
+#search along the x = (x1 + x2)/2axis for the L4 and L5 points
     c = (a+b)/2.0
     while (b-a)/2.0 > tol:
         if sum(list(f(m1, m2, d, x, c))) == 0:
