@@ -41,7 +41,7 @@ def bisection_xaxis(f, m1, m2, d, a, b, tol):
     return c
 
 def bisection_yaxis(f, m1, m2, d, a, b, tol, x):
-#search along the x = (x1 + x2)/2axis for the L4 and L5 points
+#search along the x = (x1 + x2)/2 line for the L4 and L5 points
     c = (a+b)/2.0
     while (b-a)/2.0 > tol:
         if sum(list(f(m1, m2, d, x, c))) == 0:

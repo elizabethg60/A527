@@ -24,8 +24,8 @@ at each grid point.
 """
 
 #hardwire grid dimensions
-grid_x = np.linspace(-2, 2, 500)
-grid_y = np.linspace(-2, 2, 500)
+grid_x = np.linspace(-1.5, 1.5, 500)
+grid_y = np.linspace(-1.5, 1.5, 500)
 
 grid_x_small = np.linspace(-1.5, 1.5, 10)
 grid_y_small = np.linspace(-1.5, 1.5, 10)
@@ -79,20 +79,20 @@ L2_x = bisection_xaxis(acceleration, m1, m2, d, x2 + 0.001, 2, tol)
 L4_y = bisection_yaxis(acceleration, m1, m2, d, 0, 2, tol, x) 
 L5_y = bisection_yaxis(acceleration, m1, m2, d, -2, 0, tol, x)
 
-
 # plot
 fig, ax = plt.subplots()
 min_level = np.quantile(Z, 0.05)
 max_level = np.quantile(Z, 0.95)
-levels = np.linspace(min_level, max_level, 20)
-ax.scatter([-(m2/m)*d, (m1/m)*d], [0,0], color = 'r', label = "bodies")
-ax.scatter(L1_x, 0, color = 'k')
-ax.scatter(L2_x, 0, color = 'k')
-ax.scatter(L3_x, 0, color = 'k')
-ax.scatter(x, L4_y, color = 'k')
-ax.scatter(x, L5_y, color = 'k')
+levels = np.linspace(min_level, max_level, 15)
 ax.contour(X, Y, Z, levels=levels) #potential
 ax.quiver(X_small, Y_small, gravity_x, gravity_y, color="C0", angles='xy', scale_units='xy', scale=4, width=.005) #gravity
+ax.scatter([-(m2/m)*d, (m1/m)*d], [0,0], color = 'r', label = "bodies")
+ax.scatter([L1_x,L2_x,L3_x,x, x], [0,0,0,L4_y, L5_y], color = 'k')
+L_labels = ["L1", "L2", "L3", "L4", "L5"]
+for i, txt in enumerate(L_labels):
+    ax.annotate(txt, ([L1_x,L2_x,L3_x,x, x][i], [0,0,0,L4_y, L5_y][i]))
+ax.set_xlabel("x")
+ax.set_ylabel("y")
 plt.savefig("Figures/homework_one/case_one.png")
 plt.show()
 
@@ -134,15 +134,16 @@ L5_y = bisection_yaxis(acceleration, m1, m2, d, -2, 0, tol, x)
 fig, ax = plt.subplots()
 min_level = np.quantile(Z, 0.05)
 max_level = np.quantile(Z, 0.95)
-levels = np.linspace(min_level, max_level, 20)
-ax.scatter([-(m2/m)*d, (m1/m)*d], [0,0], color = 'r', label = "bodies")
-ax.scatter(L1_x, 0, color = 'k')
-ax.scatter(L2_x, 0, color = 'k')
-ax.scatter(L3_x, 0, color = 'k')
-ax.scatter(x, L4_y, color = 'k')
-ax.scatter(x, L5_y, color = 'k')
+levels = np.linspace(min_level, max_level, 15)
 ax.contour(X, Y, Z, levels=levels) 
 ax.quiver(X_small, Y_small, gravity_x, gravity_y, color="C0", angles='xy', scale_units='xy', scale=4, width=.005)
+ax.scatter([-(m2/m)*d, (m1/m)*d], [0,0], color = 'r', label = "bodies")
+ax.scatter([L1_x,L2_x,L3_x,x, x], [0,0,0,L4_y, L5_y], color = 'k')
+L_labels = ["L1", "L2", "L3", "L4", "L5"]
+for i, txt in enumerate(L_labels):
+    ax.annotate(txt, ([L1_x,L2_x,L3_x,x, x][i], [0,0,0,L4_y, L5_y][i]))
+ax.set_xlabel("x")
+ax.set_ylabel("y")
 plt.savefig("Figures/homework_one/case_two.png")
 plt.show()
 
