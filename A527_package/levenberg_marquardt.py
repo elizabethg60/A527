@@ -1,7 +1,6 @@
 import numpy as np
-import seaborn as sns
 import matplotlib.pylab as pl
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 
 def lm_func(t,p):
 
