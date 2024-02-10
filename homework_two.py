@@ -14,7 +14,7 @@ error-bars of the data. Which function fits the data better and why?
 """
 
 #set whether to use Lorentzian or Gaussian function 
-func = "G"
+func = "L"
 
 #initial guess for parameters 
 p_init = np.array([[50,50]]).T 
