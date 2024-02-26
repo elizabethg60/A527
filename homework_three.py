@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from A527_package import lagrange_polynomial, lagrange_interpolation, cubic_spline_interpolation
+from A527_package import lagrange_polynomial, lagrange_interpolation, cubic_spline_interpolation, trapezoid, monte_carlo
 
 """
 1. Data Interpolation.
@@ -95,4 +95,29 @@ plt.show()
 """
 2. Numerical Integration.
 Write a program to implement the Composite Trapezoidal Rule for integration
+Write a program to implement the Monte Carlo method for integration.
 """
+
+#both functions can be found under A527_package in integration.py 
+
+"""
+Now, apply these two programs to calculate the following
+integration, and use the comparison of the results from these algorithms with
+that from analytical solution to estimate the errors. 
+"""
+
+def integrate_fct(x):
+    return np.exp((-(x-1)**2)/2)/np.sqrt(2*np.pi)
+
+#integral bounds
+a = -100
+b = 100
+n = 100
+
+print("analytical solution: 1")
+t_soln = trapezoid(integrate_fct, a, b, 100)
+t_err = np.abs(t_soln - 1) * 100
+print("trapezoid solution: {} with error of {}%".format(t_soln, round(t_err, 3)))
+mc_soln = monte_carlo(integrate_fct, a, b, 100)
+mc_err = np.abs(mc_soln - 1) * 100
+print("monte carlo solution: {} with error of {}%".format(mc_soln, round(mc_err,3)))
