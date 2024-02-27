@@ -13,3 +13,9 @@ All functions for the Levenberg Marquardt algorithm are found within A527_packag
 Output figures within Figures/homework_two
 To run: git clone and open A527 then run in terminal: python homework_two.py 
 Note that in homework_two.py you must set in line 17 whether to do the fitting with a Gaussian or Lorentzian function, for Gaussian set func = "G" and for Lorentzian func = "L"
+
+Homework Three - Interpolation & Integration
+Lagrange and cubic spline interpolation functions are found within A527_package in interpolate.py
+Trapezoid and Monte Carlo integration functions are found within A527_package in integration.py
+Output figures within Figures/homework_three
+To run: git clone and open A527 then run in terminal: python homework_three.py 
