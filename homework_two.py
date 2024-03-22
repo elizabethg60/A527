@@ -14,7 +14,7 @@ error-bars of the data. Which function fits the data better and why?
 """
 
 #set whether to use Lorentzian or Gaussian function 
-func = "L"
+func = "G"
 
 #initial guess for parameters 
 p_init = np.array([[50,50]]).T 
@@ -87,5 +87,4 @@ ax3.set_xlabel('Function calls')
 ax3.set_ylabel('lambda')
 ax3.set_title('Evolution of lambda') 
 plt.savefig("Figures/homework_two/lambda_{}.pdf".format(func))
-
 plt.show()

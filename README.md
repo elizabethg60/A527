@@ -19,3 +19,8 @@ Lagrange and cubic spline interpolation functions are found within A527_package 
 Trapezoid and Monte Carlo integration functions are found within A527_package in integration.py
 Output figures within Figures/homework_three
 To run: git clone and open A527 then run in terminal: python homework_three.py 
+
+Midterm Project - MCMC
+Full script is found in midterm.py
+Output figures within Figures/midterm
+To run: git clone and open A527 then run in terminal: python midterm.py 
