@@ -24,3 +24,11 @@ Midterm Project - MCMC
 Full script is found in midterm.py
 Output figures within Figures/midterm
 To run: git clone and open A527 then run in terminal: python midterm.py 
+
+Homework Four - N-body
+All functions for the N-body simulaitons are found within A527_package in Nbody.py
+Full script is found in homework_four.py
+Output figures within Figures/homework_four
+To run: git clone and open A527 then run in terminal: python homework_four.py 
+Note that in homework_four.py you must set in line 18 whether to do the simulation with a RK4 or LeapFrog, for LeapFrog set method = "LeapFrog" and for RK4 method = "RK4"
+
