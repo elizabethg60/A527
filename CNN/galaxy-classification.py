@@ -74,50 +74,41 @@ images, labels = load_galaxy10()
 
 train_images, train_labels, test_images, test_labels = train_test_split(images, labels, test_size=0.1)
 
-max_list = []
-for i in range(0, len(train_images)):
-    for j in range(0, len(train_images[i])):
-        for k in range(0, len(train_images[i][j])):
-            for l in range(0, len(train_images[i][j][k])):
-                for m in range(0, len(train_images[i][j][k][l])):
-                    max_list.append(max(train_images[i][j][k][l]))
-print(max(max_list))
+class_names = ['Disturbed', 'Merging', 'Round Smooth', 'In-between Round Smooth', 'Cigar-round Smooth', \
+          'Barred Spiral', 'Unbarred Tight Spiral', 'Unbarred Loose Spiral', 'Edge-on Without Bulge', \
+          'Edge-on with Bulge']
 
-# class_names = ['Disturbed', 'Merging', 'Round Smooth', 'In-between Round Smooth', 'Cigar-round Smooth', \
-#           'Barred Spiral', 'Unbarred Tight Spiral', 'Unbarred Loose Spiral', 'Edge-on Without Bulge', \
-#           'Edge-on with Bulge']
+# Let's view more images in a grid format
+# Define the dimensions of the plot grid 
+W_grid = 5
+L_grid = 2
 
-# # Let's view more images in a grid format
-# # Define the dimensions of the plot grid 
-# W_grid = 5
-# L_grid = 2
+# fig, axes = plt.subplots(L_grid, W_grid)
+# subplot return the figure object and axes object
+# we can use the axes object to plot specific figures at various locations
 
-# # fig, axes = plt.subplots(L_grid, W_grid)
-# # subplot return the figure object and axes object
-# # we can use the axes object to plot specific figures at various locations
+fig, axes = plt.subplots(L_grid, W_grid, figsize = (15,5))
 
-# fig, axes = plt.subplots(L_grid, W_grid, figsize = (15,5))
+axes = axes.ravel() # flaten the 15 x 15 matrix into 225 array
 
-# axes = axes.ravel() # flaten the 15 x 15 matrix into 225 array
+n_train = len(train_images) # get the length of the train dataset
 
-# n_train = len(train_images) # get the length of the train dataset
+# Select a random number from 0 to n_train
+for i in np.arange(0, W_grid * L_grid): # create evenly spaces variables 
 
-# # Select a random number from 0 to n_train
-# for i in np.arange(0, W_grid * L_grid): # create evenly spaces variables 
+    # Select a random number
+    index = np.random.randint(0, n_train)
+    # read and display an image with the selected index    
+    axes[i].imshow(train_images[index,1:])
+    label_index = int(test_images[index])
+    axes[i].set_title(class_names[label_index], fontsize = 8)
+    axes[i].axis('off')
 
-#     # Select a random number
-#     index = np.random.randint(0, n_train)
-#     # read and display an image with the selected index    
-#     axes[i].imshow(train_images[index,1:])
-#     label_index = int(test_images[index])
-#     axes[i].set_title(class_names[label_index], fontsize = 8)
-#     axes[i].axis('off')
+plt.subplots_adjust(hspace=0.4)
+plt.show()
 
-# plt.subplots_adjust(hspace=0.4)
-# plt.show()
-
-# # Normalize pixel values to be between 0 and 1
-# train_images, test_images = train_images / 255.0, test_images / 255.0
+# Normalize pixel values to be between 0 and 1
+train_images, test_images = train_images / 255.0, test_images / 255.0
 
 # model = model_setup()
 # from tensorflow.keras.utils import to_categorical
