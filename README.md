@@ -32,3 +32,11 @@ Output figures within Figures/homework_four
 To run: git clone and open A527 then run in terminal: python homework_four.py 
 Note that in homework_four.py you must set in line 18 whether to do the simulation with a RK4 or LeapFrog, for LeapFrog set method = "LeapFrog" and for RK4 method = "RK4"
 
+Final Project - CNN
+Project is found under the Final_Project folder. 
+Jupyter notebook is found in CNN_galaxy.py
+Output figures within Final_Project/Results
+To run: 
+git clone and open A527
+download necessary python packages such as tensorflow
+then run in terminal: python CNN_galaxy.py OR open jupyter notebook 
